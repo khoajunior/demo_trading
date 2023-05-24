@@ -1,0 +1,45 @@
+services:
+  microservice-handle-socket:
+    image: microservice-handle-socket
+    container_name: microservice-handle-socket
+    restart: always
+    environment:
+      - TURN_ON_SAVE_COUNTER_TIME_TO_REDIS=true
+      - PICE_SERVER_NAME=PICE_SOCKET_NAME
+    env_file:
+      - ./.env
+    ports:
+      - 8080:5005
+    networks:
+      - network
+
+  microservice-handle-socket-1:
+    image: microservice-handle-socket
+    container_name: microservice-handle-socket-1
+    restart: always
+    environment:
+      - TURN_ON_SAVE_COUNTER_TIME_TO_REDIS=false
+      - PICE_SERVER_NAME=PICE_SOCKET_NAME_1
+    env_file:
+      - ./.env
+    ports:
+      - 8081:5005
+    networks:
+      - network
+  
+  microservice-handle-socket-2:
+    image: microservice-handle-socket
+    container_name: microservice-handle-socket-2
+    restart: always
+    environment:
+      - TURN_ON_SAVE_COUNTER_TIME_TO_REDIS=false
+      - PICE_SERVER_NAME=PICE_SOCKET_NAME_2
+    env_file:
+      - ./.env
+    ports:
+      - 8082:5005
+    networks:
+      - network
+
+networks:
+  network:

@@ -1,0 +1,286 @@
+version: '3'
+services:
+
+# duplicate 5 service logic binary
+  logic-binary-forex-1:
+    image: logic-binary
+    container_name: logic-binary-forex-1
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=LOGIC_BINARY_FOREX_CHUNK_1
+      - CHUNK_ORDER_BINARY_LIST=1
+      - CHUNK_PICE_ORDER_BINARY=1
+      - PRICE_TYPE=forex
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  # logic-binary-forex-2:
+  #   image: logic-binary
+  #   container_name: logic-binary-forex-2
+  #   restart: always
+  #   environment:
+  #     - MICROSERVICE_NAME=LOGIC_BINARY_FOREX_CHUNK_2
+  #     - CHUNK_ORDER_BINARY_LIST=2
+  #     - CHUNK_PICE_ORDER_BINARY=2
+  #     - PRICE_TYPE=forex
+  #   env_file:
+  #     - ./.env
+  #   networks:
+  #     - network
+  
+
+  # binary stock 
+  logic-binary-stock-1:
+    image: logic-binary
+    container_name: logic-binary-stock-1
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=LOGIC_BINARY_STOCK_CHUNK_1
+      - CHUNK_ORDER_BINARY_LIST=1
+      - CHUNK_PICE_ORDER_BINARY=1
+      - PRICE_TYPE=stock
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  # binary commodity 
+  logic-binary-commodity-1:
+    image: logic-binary
+    container_name: logic-binary-commodity-1
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=LOGIC_BINARY_COMMODITY_CHUNK_1
+      - CHUNK_ORDER_BINARY_LIST=1
+      - CHUNK_PICE_ORDER_BINARY=1
+      - PRICE_TYPE=commodity
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+
+  # binary crypto
+  logic-binary-crypto-1:
+    image: logic-binary
+    container_name: logic-binary-crypto-1
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=LOGIC_BINARY_CRYPTO_CHUNK_1
+      - CHUNK_ORDER_BINARY_LIST=1
+      - CHUNK_PICE_ORDER_BINARY=1
+      - PRICE_TYPE=crypto
+    env_file:
+      - ./.env
+    networks:
+      - network
+  
+# duplicate handle active => crypto, forex, stock, commodity
+  logic-active-forex:
+    image: logic-active
+    container_name: logic-active-forex
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  logic-active-commodity:
+    image: logic-active
+    container_name: logic-active-commodity
+    restart: always
+    environment:
+      - PRICE_TYPE=commodity
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  # logic-active-stock:
+  #   image: logic-active
+  #   container_name: logic-active-stock
+  #   restart: always
+  #   environment:
+  #     - PRICE_TYPE=stock
+  #   env_file:
+  #     - ./.env
+  #   networks:
+  #     - network
+
+  logic-active-crypto:
+    image: logic-active
+    container_name: logic-active-crypto
+    restart: always
+    environment:
+      - PRICE_TYPE=crypto
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+
+  # duplicate handle margin => crypto, forex, stock, commodity
+  logic-margin-forex:
+    image: logic-margin
+    container_name: logic-margin-forex
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  logic-margin-commodity:
+    image: logic-margin
+    container_name: logic-margin-commodity
+    restart: always
+    environment:
+      - PRICE_TYPE=commodity
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  # logic-margin-stock:
+  #   image: logic-margin
+  #   container_name: logic-margin-stock
+  #   restart: always
+  #   environment:
+  #     - PRICE_TYPE=stock
+  #   env_file:
+  #     - ./.env
+  #   networks:
+  #     - network
+  
+  logic-margin-crypto:
+    image: logic-margin
+    container_name: logic-margin-crypto
+    restart: always
+    environment:
+      - PRICE_TYPE=crypto
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+
+  # duplicate handle pending => crypto, forex, stock
+  logic-pending-forex:
+    image: logic-pending
+    container_name: logic-pending-forex
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  logic-pending-commodity:
+    image: logic-pending
+    container_name: logic-pending-commodity
+    restart: always
+    environment:
+      - PRICE_TYPE=commodity
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  # logic-pending-stock:
+  #   image: logic-pending
+  #   container_name: logic-pending-stock
+  #   restart: always
+  #   environment:
+  #     - PRICE_TYPE=stock
+  #   env_file:
+  #     - ./.env
+  #   networks:
+  #     - network
+
+  logic-pending-crypto:
+    image: logic-pending
+    container_name: logic-pending-crypto
+    restart: always
+    environment:
+      - PRICE_TYPE=crypto
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+
+# duplicate 2 demo-account-redis
+
+  data-demo-account-redis:
+    image: data-demo-account-redis
+    container_name: data-demo-account-redis
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=DATA_DEMO_ACCOUNT_REDIS
+      - TIME_TO_CHECKING_TOURNAMENT_EXP=*/5 * * * * 
+      - TURN_ON_SCHEDULE_FOR_CLOSED_TOURNAMENT=true
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  # data-demo-account-redis_1:
+  #   image: data-demo-account-redis
+  #   container_name: data-demo-account-redis_1
+  #   restart: always
+  #   environment:
+  #       - MICROSERVICE_NAME=DATA_DEMO_ACCOUNT_REDIS_CHUNK_1
+  #       - TIME_TO_CHECKING_TOURNAMENT_EXP=0 0 10 * * *
+  #   env_file:
+  #     - ./.env
+  #   networks:
+  #     - network
+
+
+
+# duplicate 2 data-forex-binary-pg
+
+  data-forex-binary-pg:
+    image: data-forex-binary-pg
+    container_name: data-forex-binary-pg
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=DATA_FOREX_BINARY_PG
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  # data-forex-binary-pg_1:
+  #   image: data-forex-binary-pg
+  #   container_name: data-forex-binary-pg_1
+  #   restart: always
+  #   environment:
+  #     - MICROSERVICE_NAME=DATA_FOREX_BINARY_PG_CHUNK_1
+  #   env_file:
+  #     - ./.env
+  #   networks:
+  #     - network
+
+
+
+  data-cron-swap:
+    image: data-cron-swap
+    container_name: data-cron-swap
+    restart: always
+    build:
+      context: ./microservices/schedule_swap_order
+    env_file:
+      - ./.env
+    networks:
+      - network
+      
+networks:
+  network:
+  

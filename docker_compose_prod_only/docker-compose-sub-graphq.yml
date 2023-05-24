@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+  sub-graphql:
+    image: hasura/graphql-engine:v2.0.1
+    container_name: sub-graphql
+    restart: always
+    ports:
+      - 8091:8080
+    env_file:
+      - ./.graphql.env
+    depends_on:
+      - auth
+    networks:
+      - network
+
+  auth:
+    image: httpsomkar/keycloak-hasura-connector:latest
+    container_name: auth
+    restart: always
+    networks:
+      - network
+    env_file:
+      - ./.graphql.env
+
+networks:
+  network:
+
+
+

@@ -1,0 +1,2 @@
+CREATE TABLE "public"."user_performance" ("id" uuid NOT NULL DEFAULT gen_random_uuid(), "user_id" uuid NOT NULL, "total_order" integer NOT NULL, "total_profit" float8 NOT NULL, "month" integer NOT NULL, "year" integer NOT NULL, "rank" integer NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("user_id") REFERENCES "public"."user_profile"("id") ON UPDATE restrict ON DELETE restrict);
+CREATE EXTENSION IF NOT EXISTS pgcrypto;

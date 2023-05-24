@@ -1,0 +1,72 @@
+version: '3'
+services:
+
+  trading-graphql:
+    image: hasura/graphql-engine:v2.0.1
+    container_name: trading-graphql
+    restart: always
+    ports:
+      - 8080:8080
+    env_file:
+      - ./.env
+    depends_on:
+      - auth
+    networks:
+      - network
+
+  auth:
+    image: httpsomkar/keycloak-hasura-connector:latest
+    restart: always
+    networks:
+      - network
+    env_file:
+      - ./.env
+
+  microservice-account:
+    container_name: microservice-account
+    restart: always
+    image: ${DOCKER_REGISTRY}/microservice-account
+    build: 
+      context: ./microservices/account
+    depends_on: 
+      - trading-graphql
+    env_file:
+      - ./.env
+    networks:
+      - network
+  
+  microservice-order-forex:
+    image: ${DOCKER_REGISTRY}/microservice-order-forex
+    container_name: microservice-order-forex
+    restart: always
+    build:
+      context: ./microservices/order_forex
+    env_file:
+      - ./.env
+    networks:
+      - network  
+    
+  microservice-order-binary:
+    image: ${DOCKER_REGISTRY}/microservice-order-binary
+    container_name: microservice-order-binary
+    restart: always
+    build:
+      context: ./microservices/order_binary
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  microservice-tournament-achievement:
+    image: ${DOCKER_REGISTRY}/microservice-tournament-achievement
+    container_name: microservice-tournament-achievement
+    restart: always
+    build:
+      context: ./microservices/tournament-achievement
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+networks:
+  network:

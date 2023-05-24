@@ -1,0 +1,253 @@
+version: '3.2'
+services:
+
+  # deploy 2 service cron-demo-account service_1 and 2 return info demo-account: 
+  cron-demo-account-service-1:
+    image: cron-demo-account-service-1
+    container_name: cron-demo-account-service-1
+    restart: always
+    build:
+      context: ./microservices/cron-demo-account
+    environment:
+      - CHUNK_USER_LIST=2
+      - PICE_USER_LIST=1
+      - CHUNK_SERCVICE_NAME=chunk_demo_account_service_1
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  cron-demo-account-service-2:
+    image: cron-demo-account-service-2
+    container_name: cron-demo-account-service-2
+    restart: always
+    build:
+      context: ./microservices/cron-demo-account
+    environment:
+      - CHUNK_USER_LIST=2
+      - PICE_USER_LIST=2
+      - CHUNK_SERCVICE_NAME=chunk_demo_account_service_2
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+
+  # deploy 2 service online binary service 1 and 2
+  online-binary-service-1:
+    image: online-binary-service-1
+    container_name: online-binary-service-1
+    restart: always
+    build:
+      context: ./microservices/logic-binary
+    environment:
+      - CHUNK_USER_LIST=2
+      - PICE_USER_LIST=1
+      - CHUNK_SERCVICE_NAME=chunk_binary_forex_service_1
+      - HANDLE_LOGIC_SERVICE=online
+      - EXCHANGE_LOGIC_SERVICE=online-binary
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  online-binary-service-2:
+    image: online-binary-service-2
+    container_name: online-binary-service-2
+    restart: always
+    build:
+      context: ./microservices/logic-binary
+    environment:
+      - CHUNK_USER_LIST=2
+      - PICE_USER_LIST=2
+      - CHUNK_SERCVICE_NAME=chunk_online_binary_service_2
+      - HANDLE_LOGIC_SERVICE=online
+      - EXCHANGE_LOGIC_SERVICE=online-binary
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  # deploy 2 service online active forex service 1 and 2
+  online-active-forex-service-1:
+    image: online-active-forex-service-1
+    container_name: online-active-forex-service-1
+    restart: always
+    build:
+      context: ./microservices/logic-active-forex
+    environment:
+      - CHUNK_USER_LIST=2
+      - PICE_USER_LIST=1
+      - CHUNK_SERCVICE_NAME=chunk_online_active_forex_service_1
+      - HANDLE_LOGIC_SERVICE=online
+      - EXCHANGE_LOGIC_SERVICE=online-active-forex
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  online-active-forex-service-2:
+    image: online-active-forex-service-2
+    container_name: online-active-forex-service-2
+    restart: always
+    build:
+      context: ./microservices/logic-active-forex
+    environment:
+      - CHUNK_USER_LIST=2
+      - PICE_USER_LIST=2
+      - CHUNK_SERCVICE_NAME=chunk_online_active_forex_service_2
+      - HANDLE_LOGIC_SERVICE=online
+      - EXCHANGE_LOGIC_SERVICE=online-active-forex
+    env_file:
+      - ./.env
+    networks:
+      - network
+    
+
+  # deploy 2 service online pending forex service 1 and 2
+  online-pending-forex-service-1:
+    image: online-pending-forex-service-1
+    container_name: online-pending-forex-service-1
+    restart: always
+    build:
+      context: ./microservices/logic-pending-forex
+    environment:
+      - CHUNK_USER_LIST=2
+      - PICE_USER_LIST=1
+      - CHUNK_SERCVICE_NAME=chunk_online_pending_forex_service_1
+      - HANDLE_LOGIC_SERVICE=online
+      - EXCHANGE_LOGIC_SERVICE=online-pending-forex
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  online-pending-forex-service-2:
+    image: online-pending-forex-service-2
+    container_name: online-pending-forex-service-2
+    restart: always
+    build:
+      context: ./microservices/logic-pending-forex
+    environment:
+      - CHUNK_USER_LIST=2
+      - PICE_USER_LIST=2
+      - CHUNK_SERCVICE_NAME=chunk_online_pending_forex_service_2
+      - HANDLE_LOGIC_SERVICE=online
+      - EXCHANGE_LOGIC_SERVICE=online-pending-forex
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  # deploy 2 service online margin forex service 1 and 2
+  online-margin-forex-service-1:
+    image: online-margin-forex-service-1
+    container_name: online-margin-forex-service-1
+    restart: always
+    build:
+      context: ./microservices/logic-margin-forex
+    environment:
+      - CHUNK_USER_LIST=2
+      - PICE_USER_LIST=1
+      - CHUNK_SERCVICE_NAME=chunk_online_margin_forex_service_1
+      - HANDLE_LOGIC_SERVICE=online
+      - EXCHANGE_LOGIC_SERVICE=online-margin-forex
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  online-margin-forex-service-2:
+    image: online-pmargin-forex-service-2
+    container_name: online-margin-forex-service-2
+    restart: always
+    build:
+      context: ./microservices/logic-margin-forex
+    environment:
+      - CHUNK_USER_LIST=2
+      - PICE_USER_LIST=2
+      - CHUNK_SERCVICE_NAME=chunk_online_margin_forex_service_2
+      - HANDLE_LOGIC_SERVICE=online
+      - EXCHANGE_LOGIC_SERVICE=online-margin-forex
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  
+
+  # deploy handle database save active, margin, pending forex and binary
+
+  data-forex-binary-online-1:
+    image: data-forex-binary-online-1
+    container_name: data-forex-binary-online-1
+    restart: always
+    build:
+      context: ./microservices/data-forex-binary
+    environment:
+      - HANDLE_LOGIC_SERVICE=online
+      - QUEUE_LISTEN_DATA=handle-online-data-q
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-forex-binary-online-2:
+    image: data-forex-binary-online-2
+    container_name: data-forex-binary-online-2
+    restart: always
+    build:
+      context: ./microservices/data-forex-binary
+    environment:
+      - HANDLE_LOGIC_SERVICE=online
+      - QUEUE_LISTEN_DATA=handle-online-data-q
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+
+  data-forex-binary-online-3:
+    image: data-forex-binary-online-3
+    container_name: data-forex-binary-online-3
+    restart: always
+    build:
+      context: ./microservices/data-forex-binary
+    environment:
+      - HANDLE_LOGIC_SERVICE=online
+      - QUEUE_LISTEN_DATA=handle-online-data-q
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-forex-binary-online-4:
+    image: data-forex-binary-online-4
+    container_name: data-forex-binary-online-4
+    restart: always
+    build:
+      context: ./microservices/data-forex-binary
+    environment:
+      - HANDLE_LOGIC_SERVICE=online
+      - QUEUE_LISTEN_DATA=handle-online-data-q
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-forex-binary-online-5:
+    image: data-forex-binary-online-5
+    container_name: data-forex-binary-online-5
+    restart: always
+    build:
+      context: ./microservices/data-forex-binary
+    environment:
+      - HANDLE_LOGIC_SERVICE=online
+      - QUEUE_LISTEN_DATA=handle-online-data-q
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+networks:
+  network:

@@ -1,0 +1,18 @@
+version: '3'
+services:
+
+  microservice-national-card:
+    image: microservice-national-card
+    container_name: microservice-national-card
+    restart: always
+    environment:
+      - FLASK_APP=app.py
+    build:
+      context: ./microservices/national-card
+    ports:
+      - 8088:8000
+    networks:
+      - network  
+
+networks:
+  network:

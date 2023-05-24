@@ -1,0 +1,40 @@
+version: '3.5'
+services:
+  trading-keycloak-db:
+    container_name: trading-keycloak-db
+    image: postgres
+    networks:
+      - network
+    restart: always
+    environment:
+      POSTGRES_USER: minhchau
+      POSTGRES_PASSWORD: minhchau
+      POSTGRES_DB: keycloak-db
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - trading-keycloak-db2:/var/lib/postgresql/data
+    ports:
+      - 5460:5432
+  trading-keycloak: 
+    image: wizzn/keycloak:14
+    container_name: trading-keycloak
+    restart: always
+    environment:
+      KEYCLOAK_USER: minhchau
+      KEYCLOAK_PASSWORD: minhchau2271994
+      DB_VENDOR: POSTGRES
+      DB_ADDR: trading-keycloak-db
+      DB_DATABASE: keycloak-db
+      DB_USER: minhchau
+      DB_SCHEMA: public
+      DB_PASSWORD: minhchau
+    ports:
+      - 8097:8080
+    networks:
+      - network
+    depends_on: 
+      - trading-keycloak-db
+networks: 
+  network:
+volumes:
+  trading-keycloak-db2:

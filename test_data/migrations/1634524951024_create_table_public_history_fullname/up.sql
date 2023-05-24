@@ -1,0 +1,1 @@
+CREATE TABLE "public"."history_fullname" ("id" uuid NOT NULL, "user_id" uuid NOT NULL, "new_fullname" text NOT NULL, "created_at" timestamp with time zone NOT NULL DEFAULT now(), "updated_at" timestamp with time zone NOT NULL DEFAULT now(), PRIMARY KEY ("id") , FOREIGN KEY ("user_id") REFERENCES "public"."user_profile"("id") ON UPDATE restrict ON DELETE restrict);

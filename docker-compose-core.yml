@@ -1,0 +1,72 @@
+version: "3.2"
+services:
+
+  trading-redis:
+    image: redis
+    container_name: trading-redis
+    command: redis-server --requirepass redis_password
+    ports:
+      - 6380:6379
+    environment:
+      PASSWORD: redis_password
+    restart: always
+    volumes:
+      - trading-redis:/data 
+    networks:
+      - network
+
+  # postgres of hasura
+  trading-postgres:
+    image: postgres
+    container_name: trading-postgres
+    restart: always
+    volumes:
+      - trading_db:/var/lib/postgresql/data
+    env_file:
+      - ./.core.env
+    ports:
+      - 5554:5432
+    networks:
+      - network
+
+    # postgres of hasura
+  trading-postgres-support:
+    image: postgres
+    container_name: trading-postgres-support
+    restart: always
+    volumes:
+      - trading_db_support:/var/lib/postgresql/data
+    env_file:
+      - ./.core.env
+    ports:
+      - 5555:5432
+    networks:
+      - network
+  
+  rabbitmq:
+    image:  rabbitmq:3.7.14-management-alpine
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:15672", ";", "echo", "rabbitmq start success"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    env_file:
+      - ./.core.env
+    volumes:
+      - rabbit_data:/var/lib/rabbitmq/mnesia/rabbit@my-rabbit
+    networks:
+      - network
+  
+networks:
+  network:
+
+volumes:
+  # trading_db_new:
+  trading_db_support:
+  trading_db:
+  trading-redis:
+  rabbit_data:

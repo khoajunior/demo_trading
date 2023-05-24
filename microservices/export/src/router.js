@@ -1,0 +1,26 @@
+const express = require('express')
+const router = express.Router()
+
+const get_list_user = require('./controllers/get_list_user')
+const export_user = require('./controllers/export_user')
+const get_list_tournament = require('./controllers/get_list_tournament')
+const export_tournament = require('./controllers/export_tournament')
+const get_list_order_binary = require('./controllers/order/get_list_order_binary')
+const get_list_order_cfd = require('./controllers/order/get_list_order_cfd')
+const export_order_binary = require('./controllers/order/export_order_binary')
+const export_order_cfd = require('./controllers/order/export_order_cfd')
+const get_list_brand = require('./controllers/get_list_brand')
+const export_brand = require('./controllers/export_brand')
+
+router.post('/get_list_user', get_list_user)
+router.post('/export_user', export_user)
+router.post('/get_list_tournament', get_list_tournament)
+router.post('/export_tournament', export_tournament)
+router.post('/get_list_order_binary',get_list_order_binary)
+router.post('/get_list_order_cfd',get_list_order_cfd)
+router.post('/export_order_binary',export_order_binary)
+router.post('/export_order_cfd',export_order_cfd)
+router.post('/get_list_brand', get_list_brand)
+router.post('/export_brand', export_brand)
+
+module.exports = { router }

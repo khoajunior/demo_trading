@@ -1,0 +1,216 @@
+version: '3'
+services:
+  # duplicate 8 demo-account-redis
+  data-demo-account-redis_8:
+    image: data-demo-account-redis
+    container_name: data-demo-account-redis_8 
+    restart: always
+    environment:
+        - MICROSERVICE_NAME=DATA_DEMO_ACCOUNT_REDIS_8
+        - TIME_TO_CHECKING_TOURNAMENT_EXP=0 0 7 * * *
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-demo-account-redis_9:
+    image: data-demo-account-redis
+    container_name: data-demo-account-redis_9
+    restart: always
+    environment:
+        - MICROSERVICE_NAME=DATA_DEMO_ACCOUNT_REDIS_CHUNK_9
+        - TIME_TO_CHECKING_TOURNAMENT_EXP=0 0 9 * * *
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+
+  data-demo-account-redis_10:
+    image: data-demo-account-redis
+    container_name: data-demo-account-redis_10
+    restart: always
+    environment:
+        - MICROSERVICE_NAME=DATA_DEMO_ACCOUNT_REDIS_CHUNK_10
+        - TIME_TO_CHECKING_TOURNAMENT_EXP=0 0 11 * * *
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-demo-account-redis_11:
+    image: data-demo-account-redis
+    container_name: data-demo-account-redis_11
+    restart: always
+    environment:
+        - MICROSERVICE_NAME=DATA_DEMO_ACCOUNT_REDIS_CHUNK_11
+        - TIME_TO_CHECKING_TOURNAMENT_EXP=0 0 13 * * *
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-demo-account-redis_12:
+    image: data-demo-account-redis
+    container_name: data-demo-account-redis_12
+    restart: always
+    environment:
+        - MICROSERVICE_NAME=DATA_DEMO_ACCOUNT_REDIS_CHUNK_12
+        - TIME_TO_CHECKING_TOURNAMENT_EXP=0 0 15 * * *
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-demo-account-redis_13:
+    image: data-demo-account-redis
+    container_name: data-demo-account-redis_13
+    restart: always
+    environment:
+        - MICROSERVICE_NAME=DATA_DEMO_ACCOUNT_REDIS_CHUNK_13
+        - TIME_TO_CHECKING_TOURNAMENT_EXP=0 0 17 * * *
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-demo-account-redis_14:
+    image: data-demo-account-redis
+    container_name: data-demo-account-redis_14
+    restart: always
+    environment:
+        - MICROSERVICE_NAME=DATA_DEMO_ACCOUNT_REDIS_CHUNK_14
+        - TIME_TO_CHECKING_TOURNAMENT_EXP=0 0 19 * * *
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-demo-account-redis_15:
+    image: data-demo-account-redis
+    container_name: data-demo-account-redis_15
+    restart: always
+    environment:
+        - MICROSERVICE_NAME=DATA_DEMO_ACCOUNT_REDIS_CHUNK_15
+        - TIME_TO_CHECKING_TOURNAMENT_EXP=0 0 21 * * *
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+
+  # duplicate 10 data-forex-binary-pg
+
+  data-forex-binary-pg_10:
+    image: data-forex-binary-pg
+    container_name: data-forex-binary-pg
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=DATA_FOREX_BINARY_PG_10
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-forex-binary-pg_11:
+    image: data-forex-binary-pg
+    container_name: data-forex-binary-pg_11
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=DATA_FOREX_BINARY_PG_CHUNK_11
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-forex-binary-pg_12:
+    image: data-forex-binary-pg
+    container_name: data-forex-binary-pg_12
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=DATA_FOREX_BINARY_PG_CHUNK_12
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-forex-binary-pg_13:
+    image: data-forex-binary-pg
+    container_name: data-forex-binary-pg_13
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=DATA_FOREX_BINARY_PG_CHUNK_13
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-forex-binary-pg_14:
+    image: data-forex-binary-pg
+    container_name: data-forex-binary-pg_14
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=DATA_FOREX_BINARY_PG_CHUNK_14
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+
+  data-forex-binary-pg_15:
+    image: data-forex-binary-pg
+    container_name: data-forex-binary-pg_15
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=DATA_FOREX_BINARY_PG_CHUNK_15
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-forex-binary-pg_16:
+    image: data-forex-binary-pg
+    container_name: data-forex-binary-pg_16
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=DATA_FOREX_BINARY_PG_CHUNK_16
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-forex-binary-pg_17:
+    image: data-forex-binary-pg
+    container_name: data-forex-binary-pg_17
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=DATA_FOREX_BINARY_PG_CHUNK_17
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-forex-binary-pg_18:
+    image: data-forex-binary-pg
+    container_name: data-forex-binary-pg_18
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=DATA_FOREX_BINARY_PG_CHUNK_18
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  data-forex-binary-pg_19:
+    image: data-forex-binary-pg
+    container_name: data-forex-binary-pg_19
+    restart: always
+    environment:
+      - MICROSERVICE_NAME=DATA_FOREX_BINARY_PG_CHUNK_19
+    env_file:
+      - ./.env
+    networks:
+      - network
+    
+networks:
+  network:

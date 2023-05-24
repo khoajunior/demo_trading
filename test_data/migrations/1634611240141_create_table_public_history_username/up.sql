@@ -1,0 +1,2 @@
+CREATE TABLE "public"."history_username" ("id" uuid NOT NULL DEFAULT gen_random_uuid(), "new_username" text NOT NULL, "created_at" Timestamp NOT NULL DEFAULT now(), "updated_at" timestamptz NOT NULL DEFAULT now(), "user_id" uuid NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("user_id") REFERENCES "public"."user_profile"("id") ON UPDATE restrict ON DELETE restrict);
+CREATE EXTENSION IF NOT EXISTS pgcrypto;

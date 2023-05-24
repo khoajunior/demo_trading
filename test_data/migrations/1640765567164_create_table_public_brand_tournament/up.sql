@@ -1,0 +1,1 @@
+CREATE TABLE "public"."brand_tournament" ("brand_id" integer NOT NULL, "tournament_id" integer NOT NULL, "id" serial NOT NULL, PRIMARY KEY ("id") , UNIQUE ("brand_id", "tournament_id"), UNIQUE ("id"));COMMENT ON TABLE "public"."brand_tournament" IS E'Many to many relationship for brand and tournament';

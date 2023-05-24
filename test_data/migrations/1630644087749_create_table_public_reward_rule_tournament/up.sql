@@ -1,0 +1,2 @@
+CREATE TABLE "public"."reward_rule_tournament" ("id" uuid NOT NULL DEFAULT gen_random_uuid(), "tournament_id" uuid NOT NULL, "reward_rule_id" uuid NOT NULL, "created_at" timestamptz NOT NULL DEFAULT now(), "updated_at" timestamptz NOT NULL DEFAULT now(), PRIMARY KEY ("id") , FOREIGN KEY ("tournament_id") REFERENCES "public"."tournament"("id") ON UPDATE restrict ON DELETE restrict, FOREIGN KEY ("reward_rule_id") REFERENCES "public"."reward_rule"("id") ON UPDATE restrict ON DELETE restrict);
+CREATE EXTENSION IF NOT EXISTS pgcrypto;

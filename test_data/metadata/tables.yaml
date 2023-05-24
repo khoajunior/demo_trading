@@ -1,0 +1,1649 @@
+- table:
+    schema: public
+    name: asset
+  array_relationships:
+  - name: demo_history_binaries
+    using:
+      foreign_key_constraint_on:
+        column: asset
+        table:
+          schema: public
+          name: demo_history_binary
+  - name: demo_history_forexes
+    using:
+      foreign_key_constraint_on:
+        column: asset
+        table:
+          schema: public
+          name: demo_history_forex
+  select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - buy_swap
+      - sell_swap
+      - standard_volume
+      - scale_percent
+      - name
+      - created_at
+      - updated_at
+      - id
+      - swap_id
+      filter: {}
+      allow_aggregations: true
+  - role: manager
+    permission:
+      columns:
+      - buy_swap
+      - sell_swap
+      - standard_volume
+      - scale_percent
+      - name
+      - created_at
+      - updated_at
+      - id
+      - swap_id
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - buy_swap
+      - sell_swap
+      - standard_volume
+      - scale_percent
+      - name
+      - created_at
+      - updated_at
+      - id
+      - swap_id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - buy_swap
+      - sell_swap
+      - standard_volume
+      - scale_percent
+      - name
+      - created_at
+      - updated_at
+      - id
+      - swap_id
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: brand
+  array_relationships:
+  - name: brand_tournaments
+    using:
+      foreign_key_constraint_on:
+        column: brand_id
+        table:
+          schema: public
+          name: brand_tournament
+  - name: user_profiles
+    using:
+      foreign_key_constraint_on:
+        column: brand_id
+        table:
+          schema: public
+          name: user_profile
+  insert_permissions:
+  - role: super_admin
+    permission:
+      check: {}
+      columns:
+      - address
+      - company_name
+      - created_at
+      - description
+      - email
+      - id
+      - logo
+      - name
+      - phone_number
+      - status
+      - tax
+      - updated_at
+      - website
+      backend_only: false
+  select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - address
+      - company_name
+      - description
+      - email
+      - id
+      - logo
+      - name
+      - phone_number
+      - status
+      - website
+      filter: {}
+      allow_aggregations: true
+  - role: anoymous
+    permission:
+      columns:
+      - address
+      - company_name
+      - created_at
+      - description
+      - email
+      - id
+      - logo
+      - name
+      - phone_number
+      - status
+      - updated_at
+      - website
+      filter: {}
+      allow_aggregations: true
+  - role: manager
+    permission:
+      columns:
+      - address
+      - company_name
+      - created_at
+      - description
+      - email
+      - id
+      - logo
+      - name
+      - status
+      - tax
+      - updated_at
+      - website
+      filter:
+        user_profiles:
+          id:
+            _eq: X-Hasura-User-Id
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - status
+      - address
+      - company_name
+      - description
+      - email
+      - logo
+      - name
+      - phone_number
+      - tax
+      - website
+      - created_at
+      - updated_at
+      - id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - address
+      - company_name
+      - created_at
+      - description
+      - email
+      - id
+      - logo
+      - name
+      - phone_number
+      - status
+      - updated_at
+      - website
+      filter: {}
+      allow_aggregations: true
+  update_permissions:
+  - role: super_admin
+    permission:
+      columns:
+      - address
+      - company_name
+      - created_at
+      - description
+      - email
+      - id
+      - logo
+      - name
+      - phone_number
+      - status
+      - tax
+      - updated_at
+      - website
+      filter: {}
+      check: {}
+  delete_permissions:
+  - role: super_admin
+    permission:
+      filter: {}
+- table:
+    schema: public
+    name: brand_tournament
+  object_relationships:
+  - name: brand
+    using:
+      foreign_key_constraint_on: brand_id
+  - name: tournament
+    using:
+      foreign_key_constraint_on: tournament_id
+  select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - id
+      - brand_id
+      - tournament_id
+      filter: {}
+      allow_aggregations: true
+  - role: anoymous
+    permission:
+      columns:
+      - id
+      - brand_id
+      - tournament_id
+      filter: {}
+      allow_aggregations: true
+  - role: manager
+    permission:
+      columns:
+      - id
+      - brand_id
+      - tournament_id
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - brand_id
+      - id
+      - tournament_id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - id
+      - brand_id
+      - tournament_id
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: demo_account
+  object_relationships:
+  - name: reward
+    using:
+      foreign_key_constraint_on: reward_id
+  - name: tournament
+    using:
+      foreign_key_constraint_on: tournament_id
+  - name: user_profile
+    using:
+      foreign_key_constraint_on: user_id
+  computed_fields:
+  - name: is_joined
+    definition:
+      function:
+        schema: public
+        name: demo_account_121
+    comment: ""
+  - name: total_margin
+    definition:
+      function:
+        schema: public
+        name: total_margin
+  - name: total_net_profit_loss
+    definition:
+      function:
+        schema: public
+        name: total_profit_loss
+  select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - balance
+      - closed_order_at
+      - created_at
+      - id
+      - rank
+      - reward_id
+      - tournament_id
+      - updated_at
+      - user_id
+      computed_fields:
+      - is_joined
+      - total_margin
+      filter: {}
+      allow_aggregations: true
+  - role: manager
+    permission:
+      columns:
+      - balance
+      - rank
+      - closed_order_at
+      - created_at
+      - updated_at
+      - id
+      - reward_id
+      - tournament_id
+      - user_id
+      computed_fields:
+      - is_joined
+      - total_margin
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - user_id
+      - balance
+      - created_at
+      - updated_at
+      - rank
+      - id
+      - tournament_id
+      - reward_id
+      - closed_order_at
+      computed_fields:
+      - is_joined
+      - total_margin
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - balance
+      - closed_order_at
+      - created_at
+      - id
+      - rank
+      - reward_id
+      - tournament_id
+      - updated_at
+      - user_id
+      computed_fields:
+      - is_joined
+      - total_margin
+      filter: {}
+      allow_aggregations: true
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - balance
+      filter:
+        _and:
+        - user_id:
+            _eq: X-Hasura-User-Id
+        - tournament:
+            is_default:
+              _eq: true
+      check: {}
+- table:
+    schema: public
+    name: demo_history_binary
+  object_relationships:
+  - name: assetByAsset
+    using:
+      foreign_key_constraint_on: asset
+  - name: tournament
+    using:
+      foreign_key_constraint_on: tournament_id
+  - name: user_profile
+    using:
+      foreign_key_constraint_on: user_id
+  select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - user_id
+      - open_price
+      - close_price
+      - start_time
+      - end_time
+      - is_checked
+      - investment
+      - asset
+      - percent_profit_loss
+      - total_profit_loss
+      - equity
+      - type
+      - created_at
+      - updated_at
+      - id
+      - tournament_id
+      - counter_time
+      - status
+      - IP
+      filter: {}
+      allow_aggregations: true
+  - role: manager
+    permission:
+      columns:
+      - is_checked
+      - close_price
+      - equity
+      - investment
+      - open_price
+      - percent_profit_loss
+      - total_profit_loss
+      - counter_time
+      - status
+      - type
+      - asset
+      - IP
+      - created_at
+      - end_time
+      - start_time
+      - updated_at
+      - id
+      - tournament_id
+      - user_id
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - is_checked
+      - close_price
+      - equity
+      - investment
+      - open_price
+      - percent_profit_loss
+      - total_profit_loss
+      - counter_time
+      - status
+      - type
+      - asset
+      - IP
+      - created_at
+      - end_time
+      - start_time
+      - updated_at
+      - id
+      - tournament_id
+      - user_id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - is_checked
+      - close_price
+      - equity
+      - investment
+      - open_price
+      - percent_profit_loss
+      - total_profit_loss
+      - counter_time
+      - status
+      - type
+      - asset
+      - IP
+      - created_at
+      - end_time
+      - start_time
+      - updated_at
+      - id
+      - tournament_id
+      - user_id
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: demo_history_forex
+  object_relationships:
+  - name: assetByAsset
+    using:
+      foreign_key_constraint_on: asset
+  - name: tournament
+    using:
+      foreign_key_constraint_on: tournament_id
+  - name: user_profile
+    using:
+      foreign_key_constraint_on: user_id
+  select_permissions:
+  - role: manager
+    permission:
+      columns:
+      - close_price
+      - dividends
+      - fn_net_profit_loss
+      - gross_profit_loss
+      - leverage
+      - margin
+      - net_profit_loss
+      - open_price
+      - pending_price
+      - quantity
+      - stop_loss
+      - swap
+      - take_profit
+      - count_id
+      - status
+      - transaction_type
+      - type
+      - asset
+      - IP
+      - created_at
+      - end_time
+      - start_time
+      - updated_at
+      - id
+      - tournament_id
+      - user_id
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - close_price
+      - dividends
+      - fn_net_profit_loss
+      - gross_profit_loss
+      - leverage
+      - margin
+      - net_profit_loss
+      - open_price
+      - pending_price
+      - quantity
+      - stop_loss
+      - swap
+      - take_profit
+      - count_id
+      - status
+      - transaction_type
+      - type
+      - asset
+      - IP
+      - created_at
+      - end_time
+      - start_time
+      - updated_at
+      - id
+      - tournament_id
+      - user_id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - start_time
+      - end_time
+      - asset
+      - quantity
+      - open_price
+      - close_price
+      - leverage
+      - swap
+      - take_profit
+      - stop_loss
+      - gross_profit_loss
+      - net_profit_loss
+      - created_at
+      - updated_at
+      - user_id
+      - pending_price
+      - dividends
+      - type
+      - margin
+      - status
+      - transaction_type
+      - fn_net_profit_loss
+      - id
+      - tournament_id
+      - count_id
+      - IP
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: history_username
+  object_relationships:
+  - name: user_profile
+    using:
+      foreign_key_constraint_on: user_id
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - created_at
+      - id
+      - old_username
+      - updated_at
+      - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: leverage
+  array_relationships:
+  - name: leverage_tournaments
+    using:
+      foreign_key_constraint_on:
+        column: leverage_id
+        table:
+          schema: public
+          name: leverage_tournament
+  select_permissions:
+  - role: manager
+    permission:
+      columns:
+      - leverage
+      - created_at
+      - updated_at
+      - id
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - id
+      - leverage
+      - created_at
+      - updated_at
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - id
+      - leverage
+      - created_at
+      - updated_at
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: leverage_tournament
+  object_relationships:
+  - name: leverage
+    using:
+      foreign_key_constraint_on: leverage_id
+  - name: tournament
+    using:
+      foreign_key_constraint_on: tournament_id
+  select_permissions:
+  - role: manager
+    permission:
+      columns:
+      - created_at
+      - updated_at
+      - id
+      - leverage_id
+      - tournament_id
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - id
+      - tournament_id
+      - leverage_id
+      - created_at
+      - updated_at
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - created_at
+      - updated_at
+      - id
+      - leverage_id
+      - tournament_id
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: machine_user
+  object_relationships:
+  - name: user_profile
+    using:
+      foreign_key_constraint_on: user_id
+  array_relationships:
+  - name: sessions
+    using:
+      foreign_key_constraint_on:
+        column: machine_user_id
+        table:
+          schema: public
+          name: session
+  select_permissions:
+  - role: manager
+    permission:
+      columns:
+      - id
+      - machine_id
+      - user_id
+      - created_at
+      - updated_at
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - machine_id
+      - created_at
+      - updated_at
+      - id
+      - user_id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - machine_id
+      - created_at
+      - updated_at
+      - id
+      - user_id
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: notification
+  object_relationships:
+  - name: userProfileByUpdatedBy
+    using:
+      foreign_key_constraint_on: updated_by
+  - name: user_profile
+    using:
+      foreign_key_constraint_on: created_by
+  insert_permissions:
+  - role: manager
+    permission:
+      check: {}
+      set:
+        created_by: x-hasura-User-Id
+      columns:
+      - content
+      backend_only: false
+  - role: super_admin
+    permission:
+      check: {}
+      set:
+        created_by: x-hasura-User-Id
+      columns:
+      - content
+      backend_only: false
+  select_permissions:
+  - role: manager
+    permission:
+      columns:
+      - id
+      - content
+      - created_at
+      - updated_at
+      - created_by
+      - updated_by
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - content
+      - created_at
+      - updated_at
+      - created_by
+      - id
+      - updated_by
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - content
+      - created_at
+      - updated_at
+      - created_by
+      - id
+      - updated_by
+      filter: {}
+      allow_aggregations: true
+  update_permissions:
+  - role: manager
+    permission:
+      columns:
+      - content
+      filter: {}
+      check: {}
+      set:
+        updated_at: now()
+        updated_by: x-hasura-User-Id
+  - role: super_admin
+    permission:
+      columns:
+      - content
+      filter: {}
+      check: {}
+      set:
+        updated_at: now()
+        updated_by: x-hasura-User-Id
+  delete_permissions:
+  - role: manager
+    permission:
+      filter: {}
+  - role: super_admin
+    permission:
+      filter: {}
+- table:
+    schema: public
+    name: phone_otp
+  select_permissions:
+  - role: manager
+    permission:
+      columns:
+      - id
+      - phone_number
+      - code
+      - exp_time
+      - created_at
+      - updated_at
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - code
+      - phone_number
+      - created_at
+      - exp_time
+      - updated_at
+      - id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - code
+      - phone_number
+      - created_at
+      - exp_time
+      - updated_at
+      - id
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: reward
+  object_relationships:
+  - name: tournament
+    using:
+      foreign_key_constraint_on: tournament_id
+  select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - amount
+      - level
+      - name
+      - picture
+      - value
+      - created_at
+      - updated_at
+      - id
+      - tournament_id
+      filter: {}
+      allow_aggregations: true
+  - role: manager
+    permission:
+      columns:
+      - name
+      - value
+      - created_at
+      - updated_at
+      - picture
+      - amount
+      - tournament_id
+      - id
+      - level
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - name
+      - value
+      - created_at
+      - updated_at
+      - picture
+      - amount
+      - tournament_id
+      - id
+      - level
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - name
+      - value
+      - created_at
+      - updated_at
+      - picture
+      - amount
+      - tournament_id
+      - id
+      - level
+      filter: {}
+      allow_aggregations: true
+  delete_permissions:
+  - role: anonymous
+    permission:
+      filter: {}
+- table:
+    schema: public
+    name: reward_rule
+  array_relationships:
+  - name: reward_rule_tournaments
+    using:
+      foreign_key_constraint_on:
+        column: reward_rule_id
+        table:
+          schema: public
+          name: reward_rule_tournament
+  select_permissions:
+  - role: manager
+    permission:
+      columns:
+      - format_name
+      - name
+      - created_at
+      - updated_at
+      - id
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - id
+      - name
+      - created_at
+      - updated_at
+      - format_name
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - id
+      - name
+      - created_at
+      - updated_at
+      - format_name
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: reward_rule_tournament
+  object_relationships:
+  - name: reward_rule
+    using:
+      foreign_key_constraint_on: reward_rule_id
+  - name: tournament
+    using:
+      foreign_key_constraint_on: tournament_id
+  select_permissions:
+  - role: manager
+    permission:
+      columns:
+      - created_at
+      - updated_at
+      - id
+      - reward_rule_id
+      - tournament_id
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - created_at
+      - updated_at
+      - id
+      - reward_rule_id
+      - tournament_id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - id
+      - tournament_id
+      - reward_rule_id
+      - created_at
+      - updated_at
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: session
+  object_relationships:
+  - name: machine_user
+    using:
+      foreign_key_constraint_on: machine_user_id
+  select_permissions:
+  - role: manager
+    permission:
+      columns:
+      - id
+      - session
+      - machine_user_id
+      - created_at
+      - updated_at
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - session
+      - created_at
+      - updated_at
+      - id
+      - machine_user_id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - session
+      - created_at
+      - updated_at
+      - id
+      - machine_user_id
+      filter: {}
+      allow_aggregations: true
+  delete_permissions:
+  - role: manager
+    permission:
+      filter: {}
+  - role: super_admin
+    permission:
+      filter: {}
+  - role: user
+    permission:
+      filter:
+        machine_user:
+          user_id:
+            _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: stock_price
+  select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - id
+      - asset
+      - ts
+      - ask
+      - bid
+      - mid
+      - created_at
+      - updated_at
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - ask
+      - bid
+      - mid
+      - ts
+      - asset
+      - created_at
+      - updated_at
+      - id
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: swap
+  select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - buy_fee
+      - sell_fee
+      - weekday
+      - created_at
+      - updated_at
+      - end_trading_time
+      - funding_time
+      - start_trading_time
+      - id
+      filter: {}
+      allow_aggregations: true
+  - role: manager
+    permission:
+      columns:
+      - buy_fee
+      - sell_fee
+      - weekday
+      - created_at
+      - updated_at
+      - end_trading_time
+      - funding_time
+      - start_trading_time
+      - id
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - weekday
+      - start_trading_time
+      - end_trading_time
+      - funding_time
+      - buy_fee
+      - sell_fee
+      - created_at
+      - updated_at
+      - id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - buy_fee
+      - sell_fee
+      - weekday
+      - created_at
+      - updated_at
+      - end_trading_time
+      - funding_time
+      - start_trading_time
+      - id
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: tournament
+  object_relationships:
+  - name: userProfileByCreatedBy
+    using:
+      foreign_key_constraint_on: created_by
+  - name: user_profile
+    using:
+      foreign_key_constraint_on: updated_by
+  array_relationships:
+  - name: brand_tournaments
+    using:
+      foreign_key_constraint_on:
+        column: tournament_id
+        table:
+          schema: public
+          name: brand_tournament
+  - name: demo_accounts
+    using:
+      foreign_key_constraint_on:
+        column: tournament_id
+        table:
+          schema: public
+          name: demo_account
+  - name: demo_history_binaries
+    using:
+      foreign_key_constraint_on:
+        column: tournament_id
+        table:
+          schema: public
+          name: demo_history_binary
+  - name: demo_history_forexes
+    using:
+      foreign_key_constraint_on:
+        column: tournament_id
+        table:
+          schema: public
+          name: demo_history_forex
+  - name: leverage_tournaments
+    using:
+      foreign_key_constraint_on:
+        column: tournament_id
+        table:
+          schema: public
+          name: leverage_tournament
+  - name: reward_rule_tournaments
+    using:
+      foreign_key_constraint_on:
+        column: tournament_id
+        table:
+          schema: public
+          name: reward_rule_tournament
+  - name: rewards
+    using:
+      foreign_key_constraint_on:
+        column: tournament_id
+        table:
+          schema: public
+          name: reward
+  - name: user_tournaments
+    using:
+      foreign_key_constraint_on:
+        column: tournament_id
+        table:
+          schema: public
+          name: user_tournament
+  select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - cover_image
+      - created_at
+      - created_by
+      - default_balance
+      - description
+      - end_time
+      - frequency
+      - guide_join
+      - id
+      - is_default
+      - is_deleted_redis
+      - is_display
+      - is_finished
+      - link_rule_condition
+      - max_amount
+      - method_receive_reward
+      - min_amount
+      - name
+      - object
+      - option_trade
+      - organizer
+      - product_type
+      - reward_receiving_condition
+      - reward_receiving_term
+      - start_time
+      - status
+      - total_reward
+      - updated_at
+      - updated_by
+      filter: {}
+      allow_aggregations: true
+  - role: manager
+    permission:
+      columns:
+      - cover_image
+      - created_at
+      - created_by
+      - default_balance
+      - description
+      - end_time
+      - frequency
+      - guide_join
+      - id
+      - is_default
+      - is_deleted_redis
+      - is_display
+      - is_finished
+      - link_rule_condition
+      - max_amount
+      - method_receive_reward
+      - min_amount
+      - name
+      - object
+      - option_trade
+      - organizer
+      - product_type
+      - reward_receiving_condition
+      - reward_receiving_term
+      - start_time
+      - status
+      - total_reward
+      - updated_at
+      - updated_by
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - cover_image
+      - created_at
+      - created_by
+      - default_balance
+      - description
+      - end_time
+      - frequency
+      - guide_join
+      - id
+      - is_default
+      - is_deleted_redis
+      - is_display
+      - is_finished
+      - link_rule_condition
+      - max_amount
+      - method_receive_reward
+      - min_amount
+      - name
+      - object
+      - option_trade
+      - organizer
+      - product_type
+      - reward_receiving_condition
+      - reward_receiving_term
+      - start_time
+      - status
+      - total_reward
+      - updated_at
+      - updated_by
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - cover_image
+      - created_at
+      - created_by
+      - default_balance
+      - description
+      - end_time
+      - frequency
+      - guide_join
+      - id
+      - is_default
+      - is_deleted_redis
+      - is_display
+      - is_finished
+      - link_rule_condition
+      - max_amount
+      - method_receive_reward
+      - min_amount
+      - name
+      - object
+      - option_trade
+      - organizer
+      - product_type
+      - reward_receiving_condition
+      - reward_receiving_term
+      - start_time
+      - status
+      - total_reward
+      - updated_at
+      - updated_by
+      filter: {}
+      allow_aggregations: true
+  update_permissions:
+  - role: manager
+    permission:
+      columns:
+      - is_display
+      filter: {}
+      check: {}
+  - role: super_admin
+    permission:
+      columns:
+      - is_display
+      filter: {}
+      check: {}
+- table:
+    schema: public
+    name: user_performance
+  object_relationships:
+  - name: user_profile
+    using:
+      foreign_key_constraint_on: user_id
+  select_permissions:
+  - role: manager
+    permission:
+      columns:
+      - total_profit
+      - month
+      - rank
+      - total_order
+      - year
+      - id
+      - user_id
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - id
+      - user_id
+      - total_order
+      - total_profit
+      - month
+      - year
+      - rank
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: user_profile
+  object_relationships:
+  - name: brand
+    using:
+      foreign_key_constraint_on: brand_id
+  - name: created_by_profile
+    using:
+      foreign_key_constraint_on: created_by
+  array_relationships:
+  - name: demo_accounts
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: demo_account
+  - name: demo_history_binaries
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: demo_history_binary
+  - name: demo_history_forexes
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: demo_history_forex
+  - name: history_usernames
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: history_username
+  - name: machine_users
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: machine_user
+  - name: tournaments
+    using:
+      foreign_key_constraint_on:
+        column: created_by
+        table:
+          schema: public
+          name: tournament
+  - name: user_performances
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: user_performance
+  - name: user_tournaments
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: user_tournament
+  select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - avatar
+      - birthday
+      - career
+      - code
+      - created_at
+      - email
+      - exp_time
+      - gender
+      - brand_id
+      - id
+      - is_verified_otp
+      - level
+      - name
+      - phone_number
+      - role
+      - status
+      - ticket
+      - updated_at
+      - username
+      filter: {}
+      allow_aggregations: true
+  - role: manager
+    permission:
+      columns:
+      - is_deleted
+      - is_read
+      - is_verified_otp
+      - count_login
+      - level
+      - status
+      - ticket
+      - avatar
+      - back_url_national_id
+      - career
+      - code
+      - email
+      - front_url_national_id
+      - gender
+      - name
+      - national_id
+      - phone_number
+      - role
+      - username
+      - birthday
+      - created_at
+      - exp_time
+      - updated_at
+      - brand_id
+      - id
+      filter: {}
+      allow_aggregations: true
+  - role: super_admin
+    permission:
+      columns:
+      - is_deleted
+      - is_read
+      - is_verified_otp
+      - count_login
+      - level
+      - status
+      - ticket
+      - avatar
+      - back_url_national_id
+      - career
+      - code
+      - email
+      - front_url_national_id
+      - gender
+      - name
+      - national_id
+      - phone_number
+      - role
+      - username
+      - birthday
+      - created_at
+      - exp_time
+      - updated_at
+      - brand_id
+      - id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - is_deleted
+      - is_read
+      - is_verified_otp
+      - count_login
+      - level
+      - status
+      - ticket
+      - avatar
+      - back_url_national_id
+      - career
+      - code
+      - email
+      - front_url_national_id
+      - gender
+      - name
+      - national_id
+      - phone_number
+      - role
+      - username
+      - birthday
+      - created_at
+      - exp_time
+      - updated_at
+      - brand_id
+      - id
+      filter: {}
+      allow_aggregations: true
+  update_permissions:
+  - role: manager
+    permission:
+      columns:
+      - is_read
+      filter: {}
+      check: {}
+  - role: super_admin
+    permission:
+      columns:
+      - avatar
+      - back_url_national_id
+      - birthday
+      - career
+      - code
+      - created_at
+      - email
+      - exp_time
+      - front_url_national_id
+      - gender
+      - brand_id
+      - id
+      - is_deleted
+      - is_read
+      - is_verified_otp
+      - level
+      - name
+      - national_id
+      - phone_number
+      - role
+      - status
+      - ticket
+      - updated_at
+      - username
+      filter: {}
+      check: {}
+  - role: user
+    permission:
+      columns:
+      - avatar
+      - birthday
+      - career
+      - count_login
+      - gender
+      - is_read
+      - name
+      - phone_number
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null
+- table:
+    schema: public
+    name: user_tournament

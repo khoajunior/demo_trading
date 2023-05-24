@@ -1,0 +1,44 @@
+{
+  "name": "setup_ws_trading",
+  "version": "1.0.0",
+  "description": "trading_key wsyfzSNQSoancvb_W6Vg wsQl634VQdkBVXh2aHMw wsyYpM4uZ2dyOZFUm89Q wsMoowtgoAG6dbDM0Euw",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-console": "cd test_data && hasura console",
+    "local-migrate": "cd test_data && hasura migrate apply && hasura metadata apply",
+    "hasura-local": "cd test_data && hasura",
+    "hasura-dev": "cd test_data && hasura --envfile .development.env"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gigantecmedia/be-demo_trading.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gigantecmedia/be-demo_trading/issues"
+  },
+  "homepage": "https://github.com/gigantecmedia/be-demo_trading#readme",
+  "dependencies": {
+    "@sentry/node": "^6.11.0",
+    "candlestick-convert": "^5.1.5",
+    "crypto-js": "^4.0.0",
+    "express": "^4.17.1",
+    "express-fingerprint": "^1.2.2",
+    "express-ip-access-control": "^1.1.0",
+    "express-session": "^1.17.2",
+    "hasura-cli": "hasura-cli@2.0.1",
+    "internal-ip": "^7.0.0",
+    "ip": "^1.1.5",
+    "jsonwebtoken": "^8.5.1",
+    "node-cron": "^3.0.0",
+    "node-fetch": "^2.6.5",
+    "oanda-adapter": "^2.1.2",
+    "open-cli": "^6.0.1",
+    "playwright": "^1.14.1",
+    "trading-view-recommends-parser-nodejs": "^1.0.2",
+    "tradingview-scraper": "^0.3.0",
+    "ws": "^7.4.5"
+  }
+}

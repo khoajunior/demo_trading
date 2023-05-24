@@ -1,0 +1,1109 @@
+type Mutation {
+  add_reward_to_user (
+    tournament_id: uuid!
+  ): reward_to_userOutput
+}
+
+type Mutation {
+  add_session (
+    machine_id: String!
+    session: String!
+  ): add_sessionOutput
+}
+
+type Mutation {
+  chart_tournament_per_month (
+    start_time: String
+    end_time: String
+    brand_id: String
+  ): chart_tournament_per_monthOutput
+}
+
+type Mutation {
+  chart_user_per_day (
+    start_time: String
+    end_time: String
+    brand_id: String
+  ): chart_user_per_dayOutput
+}
+
+type Mutation {
+  close_active_order (
+    id: uuid!
+    tournament_id: uuid!
+    product_type: Int!
+    price_object: PriceObjectClosedOne
+  ): close_active_orderOutput
+}
+
+type Mutation {
+  close_active_order_list (
+    id_list: [uuid!]
+    tournament_id: uuid!
+    product_type: Int!
+    price_object: PriceObjectClosedMultiple
+  ): close_active_order_listOutput
+}
+
+type Mutation {
+  close_binary_order (
+    tournament_id: uuid!
+    id_list: [uuid!]
+    product_type: Int!
+  ): close_binary_orderOutput
+}
+
+type Mutation {
+  close_pending_order (
+    id: uuid!
+    tournament_id: uuid!
+    product_type: Int!
+  ): close_pending_orderOutput
+}
+
+type Mutation {
+  close_pending_order_list (
+    id_list: [uuid!]
+    tournament_id: uuid!
+    product_type: Int!
+  ): close_pending_order_listOutput
+}
+
+type Mutation {
+  create_binary_order (
+    tournament_id: uuid!
+    asset: String!
+    investment: Float!
+    type: Int!
+    price_object: PriceObjecBinary!
+    exp_time: Int!
+    product_type: Int!
+  ): create_binary_orderOutput
+}
+
+type Mutation {
+  create_forex_order (
+    tournament_id: uuid!
+    asset: String!
+    type: Int!
+    price_object: PriceObjectData
+    quantity: Float!
+    leverage: Float!
+    take_profit: Float
+    stop_loss: Float
+    pending_price: Float
+    take_profit_pip: Float
+    stop_loss_pip: Float
+    product_type: Int!
+  ): create_forex_orderOutput
+}
+
+type Mutation {
+  create_tournament (
+    name: String!
+    max_amount: Float
+    description: String
+    reward_receiving_term: String
+    cover_image: String
+    organizer: String!
+    reward_list: Renderedcreate_tournamentInputObject!
+    leverage_list: [String!]
+    default_balance: Float!
+    start_time: String!
+    end_time: String!
+    guide_join: String!
+    option_trade: Int!
+    product_type: Int!
+    object: String!
+    frequency: Int!
+    total_reward: Float!
+    method_receive_reward: String!
+    link_rule_condition: String!
+    reward_rule_list: [String!]
+    min_amount: Float!
+    reward_receiving_condition: String
+    brand_ids: [uuid]
+  ): create_tournamentOutput
+}
+
+type Mutation {
+  data_line_chart (
+    asset: String!
+    date: String
+    sort: String
+    limit: Int
+    offset: Int
+    product_type: String
+  ): LineChartOutput
+}
+
+type Mutation {
+  deleteTournament (
+    tournament_id: uuid!
+  ): deleteTournamentObject
+}
+
+type Mutation {
+  delete_user (
+    user_id: uuid!
+  ): delete_userOutput
+}
+
+type Mutation {
+  export_brand (
+    page_size: Int
+    current_page: Int
+    sort_by: String
+    sort_direction: String
+    search: String
+    id: [uuid]
+    status: [Int]
+    min_count_tournament: Int
+    max_count_tournament: Int
+  ): export_brandOutput
+}
+
+type Mutation {
+  export_order_binary (
+    page_size: Int
+    current_page: Int
+    sort_by: String
+    sort_direction: String
+    status: Boolean
+    tournament_id: uuid
+    type: [Int]
+    user_id: uuid
+  ): export_order_binaryOutput
+}
+
+type Mutation {
+  export_order_by_user (
+    user_id: uuid!
+    start_time: String
+    end_time: String
+    sort_by: String
+    sort_direction: String
+  ): export_order_by_userOutput
+}
+
+type Mutation {
+  export_order_cfd (
+    page_size: Int
+    current_page: Int
+    sort_by: String
+    sort_direction: String
+    status: [Int]
+    tournament_id: uuid
+    type: [Int]
+    user_id: uuid
+  ): export_order_cfdOutput
+}
+
+type Mutation {
+  export_order_in_tournament (
+    tournament_id: uuid!
+    user_id: uuid
+    start_time: String
+    end_time: String
+    sort_by: String
+    sort_direction: String
+  ): export_order_in_tournamentOutput
+}
+
+type Mutation {
+  export_tournament (
+    search: String
+    page_size: Int
+    current_page: Int
+    sort_by: String
+    sort_direction: String
+    status: [Int]
+    option_trade: Int
+    product_type: [Int]
+    start_time_month_year: [String]
+    end_time_month_year: [String]
+    current_time: String
+    brand: [uuid]
+    status_time: Int
+  ): export_tournamentOutput
+}
+
+type Mutation {
+  export_user (
+    search: String
+    status_verified_otp: Boolean
+    status_national_id: Boolean
+    page_size: Int
+    current_page: Int
+    sort_by: String
+    sort_direction: String
+    role: [String]
+    tournament_id: [uuid]
+  ): export_userOutput
+}
+
+type Mutation {
+  export_user_in_tournament (
+    tournament_id: uuid!
+    start_time: String
+    end_time: String
+  ): export_user_in_tournamentOutput
+}
+
+type Mutation {
+  forex_histories (
+    asset: String!
+    from_date: String
+    to_date: String
+    sort: String
+    limit: Int
+    offset: Int
+    product_type: String
+  ): forexHistoriesOutput
+}
+
+type Mutation {
+  get_list_brand (
+    page_size: Int
+    current_page: Int
+    sort_by: String
+    sort_direction: String
+    search: String
+    id: [uuid]
+    status: [Int]
+    min_count_tournament: Int
+    max_count_tournament: Int
+  ): get_list_brandOutput
+}
+
+type Mutation {
+  get_list_order_binary (
+    page_size: Int
+    current_page: Int
+    sort_by: String
+    sort_direction: String
+    status: Boolean
+    tournament_id: uuid
+    type: [Int]
+    user_id: uuid
+  ): get_list_order_binaryOutput
+}
+
+type Mutation {
+  get_list_order_cfd (
+    page_size: Int
+    current_page: Int
+    sort_by: String
+    sort_direction: String
+    status: [Int]
+    tournament_id: uuid
+    type: [Int]
+    user_id: uuid
+  ): get_list_order_cfdOutput
+}
+
+type Mutation {
+  get_list_tournament (
+    search: String
+    page_size: Int
+    current_page: Int
+    sort_by: String
+    sort_direction: String
+    status: [Int]
+    option_trade: Int
+    product_type: [Int]
+    start_time_month_year: [String]
+    end_time_month_year: [String]
+    current_time: String
+    brand: [uuid]
+    status_time: Int
+  ): get_list_tournamentOutput
+}
+
+type Mutation {
+  get_list_user (
+    search: String
+    status_verified_otp: Boolean
+    status_national_id: Boolean
+    page_size: Int
+    current_page: Int
+    sort_by: String
+    sort_direction: String
+    role: [String]
+    tournament_id: [uuid]
+  ): get_list_userOutput
+}
+
+type Mutation {
+  get_market_status (
+    product_type: String!
+  ): marketOutput
+}
+
+type Mutation {
+  get_order_list_forex (
+    tournament_id: [uuid]
+    start_day: String
+    end_day: String
+    sort_by: String
+    sort_direction: String
+    page_size: Int
+    current_page: Int
+    status: [Int]
+  ): get_order_list_forexOutput
+}
+
+type Mutation {
+  get_rank_in_tournament (
+    tournament_list: [uuid!]
+  ): get_rank_in_tournamentOutput
+}
+
+type Mutation {
+  get_signed_url (
+    type: Int
+    user_id: uuid
+  ): get_signed_urlOutput
+}
+
+type Mutation {
+  get_signed_url_avatar : get_signed_url_avatarOutput
+}
+
+type Mutation {
+  get_signed_url_reward_picture : get_signed_url_reward_pictureOutput
+}
+
+type Query {
+  get_user_achievement (
+    tournament_id: [uuid]
+  ): get_user_achievementOutput
+}
+
+type Mutation {
+  insert_request (
+    start_time: timestamptz!
+    end_time: timestamptz!
+    open_price: float8!
+    user_id: uuid!
+    scale_percent: float8!
+    status: Int!
+    investment: float8!
+    asset: String!
+    type: Int!
+  ): SampleOutput
+}
+
+type Mutation {
+  join_tournament (
+    tournament_id: uuid!
+  ): join_tournamentOutput
+}
+
+type Mutation {
+  leave_tournament (
+    tournament_id: uuid!
+  ): leave_tournamentOutput
+}
+
+type Mutation {
+  login_jwt (
+    access_token: String!
+  ): login_jwtOutput
+}
+
+type Mutation {
+  login_password (
+    username: String
+    password: String!
+    captcha: String
+  ): loginOutput
+}
+
+type Mutation {
+  on_board (
+    user_id: uuid!
+  ): onBoardOutput
+}
+
+type Mutation {
+  register (
+    username: String!
+    email: String!
+    password: String!
+    role: String
+    fullname: String!
+    brand_id: String
+    phone_number: String
+    code: String
+    gender: String
+    birthday: String
+    career: String
+    national_id: String
+    code: String
+    captcha: String
+  ): registerOutput
+}
+
+type Mutation {
+  reset_password (
+    old_password: String!
+    new_password: String!
+  ): resetPasswordOutput
+}
+
+type Mutation {
+  sendEmailForAdmin (
+    emails: [String]
+    content: String
+    subject: String
+    sendAll: Boolean
+  ): sendEmailForAdminOutput
+}
+
+type Mutation {
+  send_forgot_password_email (
+    email: String
+    username: String
+  ): send_forgot_password_emailOutput
+}
+
+type Mutation {
+  send_otp (
+    phone_number: String!
+  ): send_otp_output
+}
+
+type Mutation {
+  send_verify_email (
+    email: String
+    username: String
+  ): sendVerifyEmailOutput
+}
+
+type Mutation {
+  sort_user_by_tournament (
+    tournament_id: uuid!
+    type_sort: Int
+    limit: Int
+    offset: Int
+  ): sort_user_by_tournamentOutput
+}
+
+type Mutation {
+  update_active_order (
+    id: uuid!
+    tournament_id: uuid!
+    take_profit: Float
+    stop_loss: Float
+    product_type: Int!
+  ): update_active_orderOutput
+}
+
+type Mutation {
+  update_national_id (
+    front_url_national_id: String!
+    back_url_national_id: String!
+    isPassport: Boolean!
+  ): update_national_id_output
+}
+
+type Mutation {
+  update_pending_order (
+    id: uuid!
+    tournament_id: uuid!
+    take_profit: Float
+    stop_loss: Float
+    pending_price: Float
+    product_type: Int!
+  ): update_pending_orderOutput
+}
+
+type Mutation {
+  update_tournament_custom (
+    tournament_id: String!
+    max_amount: Float
+    description: String
+    reward_receiving_term: String
+    cover_image: String
+    name: String
+    organizer: String
+    start_time: String
+    end_time: String
+    total_reward: Float
+    default_balance: Float
+    min_amount: Float
+    guide_join: String
+    object: String
+    method_receive_reward: String
+    link_rule_condition: String
+    frequency: Int
+    product_type: Int
+    reward_list: Renderedupdate_tournament_customInputObject
+    leverage_list: [String]
+    reward_rule_list: [String]
+    reward_receiving_condition: String
+    brand_ids: [uuid]
+  ): update_tournament_customOutput
+}
+
+type Mutation {
+  update_user (
+    user_id: uuid!
+    new_username: String
+    new_fullname: String
+    new_email: String
+    role: String
+    new_ticket: Int
+    phone_number: String
+    birthday: String
+    career: String
+    gender: String
+    back_url_national_id: String
+    front_url_national_id: String
+    national_id: String
+    avatar: String
+    is_verified_otp: Boolean
+    is_deleted: Boolean
+  ): updateUserOutput
+}
+
+type Mutation {
+  user_update_info (
+    new_username: String
+    new_fullname: String
+    phone_number: String
+    gender: String
+    birthday: String
+    career: String
+    avatar: String
+    front_url_national_id: String
+    back_url_national_id: String
+  ): user_update_usernameOutput
+}
+
+type Mutation {
+  verify_email (
+    code: String!
+  ): verify_emailOutput
+}
+
+type Mutation {
+  verify_forgot_password_email (
+    code: String!
+    new_password: String!
+  ): verify_forgot_password_emailOutput
+}
+
+type Mutation {
+  verify_otp (
+    code: String!
+  ): verify_otp_output
+}
+
+type SampleOutput {
+  success : Boolean!
+  errorMessage : String
+}
+
+type registerOutput {
+  message : String
+  status : Int!
+  data : RenderedRegisterObject
+}
+
+type loginOutput {
+  message : String
+  status : Int!
+  data : RenderedLoginObject
+}
+
+type loginJWTOutput {
+  message : String
+  status : Boolean
+  data : RenderedLoginJWTObject
+}
+
+type forgotPasswordOutput {
+  message : String
+  status : Int!
+  data : String
+}
+
+type resetPasswordOutput {
+  message : String
+  status : Boolean
+  data : String
+}
+
+type sendVerifyEmailOutput {
+  message : String
+  status : Int!
+  data : String
+}
+
+type onBoardOutput {
+  message : String
+  status : Boolean
+  data : String
+}
+
+type updateUsernameOutput {
+  message : String
+  status : Boolean
+  data : String
+}
+
+type updateUserOutput {
+  message : String
+  status : Int!
+  data : String
+}
+
+type forexHistoriesOutput {
+  message : HistoriesMessage
+  status : Int
+  data : HistoriesObject
+}
+
+type close_active_orderOutput {
+  message : String
+  status : Int
+  data : Renderedclose_active_orderObject
+}
+
+type close_active_order_listOutput {
+  message : String
+  status : Int
+  data : Renderedclose_active_order_listObject
+}
+
+type close_pending_orderOutput {
+  message : String
+  status : Int
+  data : Renderedclose_pending_orderObject
+}
+
+type close_pending_order_listOutput {
+  message : String
+  status : Int
+  data : Renderedclose_pending_order_listObject
+}
+
+type create_forex_orderOutput {
+  message : String
+  status : Int
+  data : Renderedcreate_forex_orderObject
+}
+
+type get_order_list_forexOutput {
+  message : String
+  status : Int!
+  data : Renderedget_order_list_forexObject
+}
+
+type update_active_orderOutput {
+  message : String
+  status : Int
+  data : Renderedupdate_active_orderObject
+}
+
+type update_pending_orderOutput {
+  message : String
+  status : Int
+  data : Renderedupdate_pending_orderObject
+}
+
+type login_jwtOutput {
+  message : String
+  status : Int!
+  data : Renderedlogin_jwtObject
+}
+
+type create_binary_orderOutput {
+  message : String
+  status : Int
+  data : Renderedcreate_binary_orderObject
+}
+
+type join_tournamentOutput {
+  message : String
+  status : Int
+  data : Renderedjoin_tournamentObject
+}
+
+type sort_rank_user_in_tournamentOutput {
+  message : String
+  status : Int!
+  data : String
+}
+
+type reward_to_userOutput {
+  message : String
+  status : Int
+  data : String
+}
+
+type get_user_achivementOutput {
+  message : String
+  status : Int!
+  data : Renderedget_user_achivementObject
+}
+
+type verify_emailOutput {
+  message : String
+  status : Int!
+  data : String
+}
+
+type get_signed_url_avatarOutput {
+  message : String
+  status : Int!
+  data : String
+}
+
+type get_signed_url_reward_pictureOutput {
+  message : String
+  status : Int!
+  data : String
+}
+
+type LineChartOutput {
+  message : GetDataLineChartMessage
+  status : Int
+  data : GetDataLineChartObject
+}
+
+type leave_tournamentOutput {
+  message : LeaveTournamentMessage
+  status : Int!
+  data : Renderedleave_tournamentObject
+}
+
+type send_forgot_password_emailOutput {
+  message : String
+  status : Int!
+  data : String
+}
+
+type verify_forgot_password_emailOutput {
+  message : String
+  status : Int!
+  data : String
+}
+
+type upload_avatarOutput {
+  message : String
+  status : Int!
+  data : String
+}
+
+type upload_reward_pictureOutput {
+  message : String
+  status : Int!
+  data : String
+}
+
+type close_binary_orderOutput {
+  message : String
+  status : Int
+  data : Renderedclose_binary_orderObject
+}
+
+type get_user_achievementOutput {
+  message : String
+  status : Int!
+  data : Renderedget_user_achievementObject
+}
+
+type user_update_usernameOutput {
+  message : String
+  status : Int!
+  data : Rendereduser_update_usernameObject
+}
+
+type deleteTournamentObject {
+  message : String
+  status : Int
+  data : DeleteTournamentData
+}
+
+type sort_user_by_tournamentOutput {
+  message : String
+  status : Int!
+  data : Renderedsort_user_by_tournamentObject
+}
+
+type create_tournamentOutput {
+  message : String
+  status : Int
+  data : Renderedcreate_tournamentObject
+}
+
+type new_object {
+  name : Int
+  id : String
+}
+
+type update_tournament_customOutput {
+  message : String
+  status : Int!
+  data : Renderedupdate_tournament_customObject
+}
+
+type marketOutput {
+  message : String
+  status : Int!
+  data : Boolean
+}
+
+type export_tournamentOutput {
+  message : String
+  status : Int
+  data : String
+}
+
+type export_order_in_tournamentOutput {
+  message : String
+  status : Int
+  data : String
+}
+
+type export_rank_in_tournamentOutput {
+  message : String
+  status : Int
+  data : String
+}
+
+type export_order_by_userOutput {
+  message : String
+  status : Int
+  data : String
+}
+
+type export_user_in_tournamentOutput {
+  message : String
+  status : Int
+  data : String
+}
+
+type get_signed_urlOutput {
+  message : String
+  status : Int
+  data : Renderedget_signed_urlOutputObject
+}
+
+type get_rank_in_tournamentOutput {
+  message : String
+  status : Int
+  data : Renderedget_rank_in_tournamentObject
+}
+
+type add_sessionOutput {
+  message : String
+  status : Int
+  data : String
+}
+
+type update_national_id_output {
+  message : String
+  status : Int
+  data : Render_update_national_id_output
+}
+
+type send_otp_output {
+  status : Int
+  message : String
+  data : Render_send_otp_output
+}
+
+type verify_otp_output {
+  status : Int
+  message : String
+  data : Render_verify_otp_output
+}
+
+type chart_user_per_dayOutput {
+  message : String
+  status : Int
+  data : Renderedchart_user_per_dayObject
+}
+
+type chart_tournament_per_monthOutput {
+  message : String
+  status : Int
+  data : Renderedchart_tournament_per_monthObject
+}
+
+type delete_userOutput {
+  message : String
+  status : Int
+  data : Rendereddelete_userObject
+}
+
+type get_list_userOutput {
+  message : String
+  status : Int
+  data : Renderedget_list_userObject
+}
+
+type export_userOutput {
+  message : String
+  status : Int
+  data : String
+}
+
+type get_list_tournamentOutput {
+  message : String
+  status : Int
+  data : Renderedget_list_tournamentObject
+}
+
+type get_list_order_binaryOutput {
+  message : String
+  status : Int
+  data : Renderedget_list_order_binaryObject
+}
+
+type get_list_order_cfdOutput {
+  message : String
+  status : Int
+  data : Renderedget_list_order_cfdObject
+}
+
+type export_order_binaryOutput {
+  message : String
+  status : Int
+  data : String
+}
+
+type export_order_cfdOutput {
+  message : String
+  status : Int
+  data : String
+}
+
+type get_list_brandOutput {
+  message : String
+  status : Int
+  data : Renderedget_list_brandObject
+}
+
+type export_brandOutput {
+  message : String
+  status : Int
+  data : Renderedexport_brandObject
+}
+
+type sendEmailForAdminOutput {
+  status : Int
+  message : String
+  data : sendEmailForAdminOutputObject
+}
+
+scalar RenderedRegisterObject
+
+scalar RenderedLoginJWTObject
+
+scalar HistoriesObject
+
+scalar HistoriesMessage
+
+scalar RenderedLoginObject
+
+scalar Renderedclose_active_orderObject
+
+scalar Renderedclose_active_order_listObject
+
+scalar Renderedclose_pending_orderObject
+
+scalar Renderedclose_pending_order_listObject
+
+scalar Renderedcreate_forex_orderObject
+
+scalar Renderedget_order_list_forexObject
+
+scalar Renderedupdate_active_orderObject
+
+scalar Renderedupdate_pending_orderObject
+
+scalar Renderedlogin_jwtObject
+
+scalar Renderedcreate_binary_orderObject
+
+scalar Renderedjoin_tournamentObject
+
+scalar Renderedget_user_achivementObject
+
+scalar GetDataLineChartMessage
+
+scalar GetDataLineChartObject
+
+scalar LeaveTournamentMessage
+
+scalar Renderedleave_tournamentObject
+
+scalar Renderedclose_binary_orderObject
+
+scalar Renderedget_user_achievementObject
+
+scalar RenderedupdateUserObject
+
+scalar Rendereduser_update_usernameObject
+
+scalar DeleteTournamentData
+
+scalar Renderedsort_user_by_tournamentObject
+
+scalar Renderedcreate_tournamentObject
+
+scalar Renderedcreate_tournamentInputObject
+
+scalar Renderedupdate_tournament_customInputObject
+
+scalar Renderedupdate_tournament_customObject
+
+scalar Renderederror_create_forex_orderObject
+
+scalar PriceObjectData
+
+scalar PriceObjecBinary
+
+scalar PriceObjectClosedAll
+
+scalar PriceObjectClosedOne
+
+scalar PriceObjectClosedMultiple
+
+scalar Renderedget_signed_urlOutputObject
+
+scalar Renderedget_rank_in_tournamentObject
+
+scalar Render_send_otp_output
+
+scalar Render_update_national_id_output
+
+scalar Render_verify_otp_output
+
+scalar Renderedchart_tournament_per_monthObject
+
+scalar Renderedchart_user_per_dayObject
+
+scalar Rendereddelete_userObject
+
+scalar Renderedget_list_userObject
+
+scalar Renderedexport_userObject
+
+scalar Renderedget_list_tournamentObject
+
+scalar Renderedget_list_order_binaryObject
+
+scalar Renderedget_list_order_cfdObject
+
+scalar Renderedget_list_brandObject
+
+scalar Renderedexport_brandObject
+
+scalar sendEmailForAdminOutputObject
+

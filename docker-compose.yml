@@ -1,0 +1,114 @@
+version: '3'
+services:
+
+  trading-graphql:
+    image: hasura/graphql-engine:v2.1.1
+    container_name: trading-graphql
+    restart: always
+    ports:
+      - 8095:8080
+    env_file:
+      - ./.env
+    depends_on:
+      - auth
+    networks:
+      - network
+
+  auth:
+    image: httpsomkar/keycloak-hasura-connector:latest
+    restart: always
+    networks:
+      - network
+    env_file:
+      - ./.env
+
+  trading-postgres:
+    image: postgres
+    container_name: trading-postgres
+    restart: always
+    volumes:
+      - trading_db:/var/lib/postgresql/data
+    env_file:
+      - ./.core.env
+    ports:
+      - 5554:5432
+    networks:
+      - network
+
+#  microservice-account:
+#    container_name: microservice-account
+#    restart: always
+#    image: microservice-account
+#    build:
+#      context: ./microservices/account
+#    depends_on:
+#      - trading-graphql
+#    env_file:
+#      - ./.env
+#    networks:
+#      - network
+#
+#  microservice-order-forex:
+#    image: microservice-order-forex
+#    container_name: microservice-order-forex
+#    restart: always
+#    build:
+#      context: ./microservices/order_forex
+#    env_file:
+#      - ./.env
+#    networks:
+#      - network
+#
+#  microservice-order-binary:
+#    image: microservice-order-binary
+#    container_name: microservice-order-binary
+#    restart: always
+#    build:
+#      context: ./microservices/order_binary
+#    env_file:
+#      - ./.env
+#    networks:
+#      - network
+#
+#  microservice-tournament-achievement:
+#    image: microservice-tournament-achievement
+#    container_name: microservice-tournament-achievement
+#    restart: always
+#    build:
+#      context: ./microservices/tournament-achievement
+#    env_file:
+#      - ./.env
+#    networks:
+#      - network
+#
+#  microservice-dashboard:
+#    image: microservice-dashboard
+#    container_name: microservice-dashboard
+#    restart: always
+#    build:
+#      context: ./microservices/dashboard
+#    env_file:
+#      - ./.env
+#    networks:
+#      - network
+#
+#  microservice-export:
+#    image: microservice-export
+#    container_name: microservice-export
+#    restart: always
+#    build:
+#      context: ./microservices/export
+#    env_file:
+#      - ./.env
+#    networks:
+#      - network
+
+networks:
+  network:
+
+volumes:
+  # trading_db_new:
+  trading_db_support:
+  trading_db:
+  trading-redis:
+  rabbit_data:

@@ -1,0 +1,17 @@
+version: '3'
+services:
+  ws-tradingview:
+    image: ws-tradingview
+    container_name: ws-tradingview
+    build:
+      context: ./microservices/ws_tradingview
+    restart: always
+    # environment:
+    #   - PRICE_TYPE=forex
+    env_file:
+      - ./.env
+    networks:
+      - network
+networks:
+  network:
+    

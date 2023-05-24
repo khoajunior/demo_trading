@@ -1,0 +1,570 @@
+actions:
+- name: add_reward_to_user
+  definition:
+    kind: synchronous
+    handler: http://microservice-tournament-achievement:8080/reward_to_user
+  permissions:
+  - role: manager
+  - role: super_admin
+- name: add_session
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/add_session
+  permissions:
+  - role: super_admin
+  - role: user
+- name: chart_tournament_per_month
+  definition:
+    kind: synchronous
+    handler: http://microservice-dashboard:8080/chart_tournament_per_month
+  permissions:
+  - role: super_admin
+  - role: manager
+- name: chart_user_per_day
+  definition:
+    kind: synchronous
+    handler: http://microservice-dashboard:8080/chart_user_per_day
+  permissions:
+  - role: super_admin
+  - role: manager
+- name: close_active_order
+  definition:
+    kind: synchronous
+    handler: http://microservice-order-forex:8080/close_active_order
+  permissions:
+  - role: user
+- name: close_active_order_list
+  definition:
+    kind: synchronous
+    handler: http://microservice-order-forex:8080/close_active_order_list
+  permissions:
+  - role: user
+- name: close_binary_order
+  definition:
+    kind: synchronous
+    handler: http://microservice-order-binary:8080/close_binary_order
+  permissions:
+  - role: user
+- name: close_pending_order
+  definition:
+    kind: synchronous
+    handler: http://microservice-order-forex:8080/close_pending_order
+  permissions:
+  - role: user
+- name: close_pending_order_list
+  definition:
+    kind: synchronous
+    handler: http://microservice-order-forex:8080/close_pending_order_list
+  permissions:
+  - role: user
+- name: create_binary_order
+  definition:
+    kind: synchronous
+    handler: http://microservice-order-binary:8080/create_binary_order
+  permissions:
+  - role: user
+- name: create_forex_order
+  definition:
+    kind: synchronous
+    handler: http://microservice-order-forex:8080/create_forex_order
+  permissions:
+  - role: user
+- name: create_tournament
+  definition:
+    kind: synchronous
+    handler: http://microservice-tournament-achievement:8080/create_tournament
+  permissions:
+  - role: super_admin
+  - role: manager
+- name: data_line_chart
+  definition:
+    kind: synchronous
+    handler: http://microservice-demo-account:8080/line_chart
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: anonymous
+  - role: user
+- name: deleteTournament
+  definition:
+    kind: synchronous
+    handler: http://microservice-tournament-achievement:8080/delete-tournament
+  permissions:
+  - role: super_admin
+  - role: manager
+- name: delete_user
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/delete_user
+  permissions:
+  - role: super_admin
+- name: export_brand
+  definition:
+    kind: synchronous
+    handler: http://microservice-export:8080/export_brand
+  permissions:
+  - role: super_admin
+  - role: manager
+- name: export_order_binary
+  definition:
+    kind: synchronous
+    handler: http://microservice-export:8080/export_order_binary
+  permissions:
+  - role: super_admin
+  - role: manager
+- name: export_order_by_user
+  definition:
+    kind: synchronous
+    handler: http://microservice-tournament-achievement:8080/export_order_by_user
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+- name: export_order_cfd
+  definition:
+    kind: synchronous
+    handler: http://microservice-export:8080/export_order_cfd
+  permissions:
+  - role: super_admin
+  - role: manager
+- name: export_order_in_tournament
+  definition:
+    kind: synchronous
+    handler: http://microservice-tournament-achievement:8080/export_order_in_tournament
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+- name: export_tournament
+  definition:
+    kind: synchronous
+    handler: http://microservice-export:8080/export_tournament
+  permissions:
+  - role: super_admin
+  - role: manager
+- name: export_user
+  definition:
+    kind: synchronous
+    handler: http://microservice-export:8080/export_user
+  permissions:
+  - role: super_admin
+  - role: manager
+- name: export_user_in_tournament
+  definition:
+    kind: synchronous
+    handler: http://microservice-tournament-achievement:8080/export_user_in_tournament
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+- name: forex_histories
+  definition:
+    kind: synchronous
+    handler: http://microservice-demo-account:8080/histories
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+  - role: anonymous
+- name: get_list_brand
+  definition:
+    kind: synchronous
+    handler: http://microservice-export:8080/get_list_brand
+  permissions:
+  - role: user
+  - role: super_admin
+  - role: manager
+- name: get_list_order_binary
+  definition:
+    kind: synchronous
+    handler: http://microservice-export:8080/get_list_order_binary
+  permissions:
+  - role: user
+  - role: super_admin
+  - role: manager
+- name: get_list_order_cfd
+  definition:
+    kind: synchronous
+    handler: http://microservice-export:8080/get_list_order_cfd
+  permissions:
+  - role: user
+  - role: super_admin
+  - role: manager
+- name: get_list_tournament
+  definition:
+    kind: synchronous
+    handler: http://microservice-export:8080/get_list_tournament
+  permissions:
+  - role: user
+  - role: super_admin
+  - role: manager
+- name: get_list_user
+  definition:
+    kind: synchronous
+    handler: http://microservice-export:8080/get_list_user
+  permissions:
+  - role: user
+  - role: super_admin
+  - role: manager
+- name: get_market_status
+  definition:
+    kind: synchronous
+    handler: http://microservice-tournament-achievement:8080/check_market_status
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+- name: get_order_list_forex
+  definition:
+    kind: synchronous
+    handler: http://microservice-order-forex:8080/get_order_list_forex
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+- name: get_rank_in_tournament
+  definition:
+    kind: synchronous
+    handler: http://microservice-tournament-achievement:8080/get_rank_in_tournament
+  permissions:
+  - role: user
+- name: get_signed_url
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/get_signed_url
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+- name: get_signed_url_avatar
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/get_signed_url_avatar
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: anonymous
+  - role: user
+- name: get_signed_url_reward_picture
+  definition:
+    kind: synchronous
+    handler: http://microservice-tournament-achievement:8080/get_signed_url_reward_picture
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: anonymous
+  - role: user
+- name: get_user_achievement
+  definition:
+    kind: ""
+    handler: http://microservice-tournament-achievement:8080/get_achievement
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+- name: insert_request
+  definition:
+    kind: synchronous
+    handler: http://trade-request:8082/request
+  permissions:
+  - role: super_admin
+- name: join_tournament
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/join_tournament
+  permissions:
+  - role: anonymous
+  - role: user
+- name: leave_tournament
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/leave_tournament
+  permissions:
+  - role: user
+- name: login_jwt
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/login_with_jwt
+  permissions:
+  - role: manager
+  - role: super_admin
+  - role: anonymous
+  - role: anoymous
+  - role: user
+- name: login_password
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/login
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: anonymous
+  - role: anoymous
+  - role: user
+- name: on_board
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/on-board
+  permissions:
+  - role: user
+  - role: manager
+  - role: anoymous
+  - role: super_admin
+- name: register
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/register
+  permissions:
+  - role: manager
+  - role: super_admin
+  - role: user
+  - role: anonymous
+- name: reset_password
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/reset-password
+  permissions:
+  - role: manager
+  - role: super_admin
+  - role: user
+- name: sendEmailForAdmin
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/send-email-admin
+  permissions:
+  - role: super_admin
+  - role: manager
+- name: send_forgot_password_email
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/send-forgot-email
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+  - role: anonymous
+- name: send_otp
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/send_otp
+  permissions:
+  - role: anoymous
+  - role: user
+  - role: super_admin
+  - role: manager
+  - role: anonymous
+- name: send_verify_email
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/send-verify-email
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: anonymous
+  - role: user
+- name: sort_user_by_tournament
+  definition:
+    kind: synchronous
+    handler: http://microservice-tournament-achievement:8080/sort_user_by_tournament
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+- name: update_active_order
+  definition:
+    kind: synchronous
+    handler: http://microservice-order-forex:8080/update_active_order
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+- name: update_national_id
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/update_national_id
+  permissions:
+  - role: super_admin
+  - role: user
+  - role: manager
+- name: update_pending_order
+  definition:
+    kind: synchronous
+    handler: http://microservice-order-forex:8080/update_pending_order
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+- name: update_tournament_custom
+  definition:
+    kind: synchronous
+    handler: http://microservice-tournament-achievement:8080/update_tournament
+  permissions:
+  - role: super_admin
+  - role: manager
+- name: update_user
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/update-user
+  permissions:
+  - role: manager
+  - role: super_admin
+- name: user_update_info
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/user_update_username
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+- name: verify_email
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/verify-email
+  permissions:
+  - role: super_admin
+  - role: manager
+  - role: user
+  - role: anonymous
+- name: verify_forgot_password_email
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/verify-forgot-email
+  permissions:
+  - role: anoymous
+  - role: super_admin
+  - role: manager
+  - role: anonymous
+  - role: user
+- name: verify_otp
+  definition:
+    kind: synchronous
+    handler: http://microservice-account:8080/verify_otp
+  permissions:
+  - role: manager
+  - role: super_admin
+  - role: user
+custom_types:
+  enums: []
+  input_objects: []
+  objects:
+  - name: SampleOutput
+  - name: registerOutput
+  - name: loginOutput
+  - name: loginJWTOutput
+  - name: forgotPasswordOutput
+  - name: resetPasswordOutput
+  - name: sendVerifyEmailOutput
+  - name: onBoardOutput
+  - name: updateUsernameOutput
+  - name: updateUserOutput
+  - name: forexHistoriesOutput
+  - name: close_active_orderOutput
+  - name: close_active_order_listOutput
+  - name: close_pending_orderOutput
+  - name: close_pending_order_listOutput
+  - name: create_forex_orderOutput
+  - name: get_order_list_forexOutput
+  - name: update_active_orderOutput
+  - name: update_pending_orderOutput
+  - name: login_jwtOutput
+  - name: create_binary_orderOutput
+  - name: join_tournamentOutput
+  - name: sort_rank_user_in_tournamentOutput
+  - name: reward_to_userOutput
+  - name: get_user_achivementOutput
+  - name: verify_emailOutput
+  - name: get_signed_url_avatarOutput
+  - name: get_signed_url_reward_pictureOutput
+  - name: LineChartOutput
+  - name: leave_tournamentOutput
+  - name: send_forgot_password_emailOutput
+  - name: verify_forgot_password_emailOutput
+  - name: upload_avatarOutput
+  - name: upload_reward_pictureOutput
+  - name: close_binary_orderOutput
+  - name: get_user_achievementOutput
+  - name: user_update_usernameOutput
+  - name: deleteTournamentObject
+  - name: sort_user_by_tournamentOutput
+  - name: create_tournamentOutput
+  - name: new_object
+  - name: update_tournament_customOutput
+  - name: marketOutput
+  - name: export_tournamentOutput
+  - name: export_order_in_tournamentOutput
+  - name: export_rank_in_tournamentOutput
+  - name: export_order_by_userOutput
+  - name: export_user_in_tournamentOutput
+  - name: get_signed_urlOutput
+  - name: get_rank_in_tournamentOutput
+  - name: add_sessionOutput
+  - name: update_national_id_output
+  - name: send_otp_output
+  - name: verify_otp_output
+  - name: chart_user_per_dayOutput
+  - name: chart_tournament_per_monthOutput
+  - name: delete_userOutput
+  - name: get_list_userOutput
+  - name: export_userOutput
+  - name: get_list_tournamentOutput
+  - name: get_list_order_binaryOutput
+  - name: get_list_order_cfdOutput
+  - name: export_order_binaryOutput
+  - name: export_order_cfdOutput
+  - name: get_list_brandOutput
+  - name: export_brandOutput
+  - name: sendEmailForAdminOutput
+  scalars:
+  - name: RenderedRegisterObject
+  - name: RenderedLoginJWTObject
+  - name: HistoriesObject
+  - name: HistoriesMessage
+  - name: RenderedLoginObject
+  - name: Renderedclose_active_orderObject
+  - name: Renderedclose_active_order_listObject
+  - name: Renderedclose_pending_orderObject
+  - name: Renderedclose_pending_order_listObject
+  - name: Renderedcreate_forex_orderObject
+  - name: Renderedget_order_list_forexObject
+  - name: Renderedupdate_active_orderObject
+  - name: Renderedupdate_pending_orderObject
+  - name: Renderedlogin_jwtObject
+  - name: Renderedcreate_binary_orderObject
+  - name: Renderedjoin_tournamentObject
+  - name: Renderedget_user_achivementObject
+  - name: GetDataLineChartMessage
+  - name: GetDataLineChartObject
+  - name: LeaveTournamentMessage
+  - name: Renderedleave_tournamentObject
+  - name: Renderedclose_binary_orderObject
+  - name: Renderedget_user_achievementObject
+  - name: RenderedupdateUserObject
+  - name: Rendereduser_update_usernameObject
+  - name: DeleteTournamentData
+  - name: Renderedsort_user_by_tournamentObject
+  - name: Renderedcreate_tournamentObject
+  - name: Renderedcreate_tournamentInputObject
+  - name: Renderedupdate_tournament_customInputObject
+  - name: Renderedupdate_tournament_customObject
+  - name: Renderederror_create_forex_orderObject
+  - name: PriceObjectData
+  - name: PriceObjecBinary
+  - name: PriceObjectClosedAll
+  - name: PriceObjectClosedOne
+  - name: PriceObjectClosedMultiple
+  - name: Renderedget_signed_urlOutputObject
+  - name: Renderedget_rank_in_tournamentObject
+  - name: Render_send_otp_output
+  - name: Render_update_national_id_output
+  - name: Render_verify_otp_output
+  - name: Renderedchart_tournament_per_monthObject
+  - name: Renderedchart_user_per_dayObject
+  - name: Rendereddelete_userObject
+  - name: Renderedget_list_userObject
+  - name: Renderedexport_userObject
+  - name: Renderedget_list_tournamentObject
+  - name: Renderedget_list_order_binaryObject
+  - name: Renderedget_list_order_cfdObject
+  - name: Renderedget_list_brandObject
+  - name: Renderedexport_brandObject
+  - name: sendEmailForAdminOutputObject

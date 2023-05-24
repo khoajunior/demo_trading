@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  trading-keycloak: 
+    image: quay.io/keycloak/keycloak:12.0.4
+    container_name: trading-keycloak
+    restart: always
+    env_file:
+      - ./.keycloak.env
+    ports:
+      - 8097:8080
+    networks:
+      - network
+networks: 
+  network:
+

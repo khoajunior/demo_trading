@@ -1,0 +1,22 @@
+version: '3'
+services:
+
+  microservice-handle-socket:
+    image: microservice-handle-socket
+    container_name: microservice-handle-socket
+    restart: always
+    build:
+      context: ./microservices/handle_socket
+    environment:
+      - TURN_ON_SAVE_COUNTER_TIME_TO_REDIS=true
+      - PICE_SERVER_NAME=PICE_SOCKET_NAME
+    env_file:
+      - ./.env
+    ports:
+      - 5005:5005
+    networks:
+      - network
+
+networks:
+  network:
+    

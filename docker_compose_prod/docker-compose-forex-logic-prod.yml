@@ -1,0 +1,204 @@
+version: '3'
+services:
+
+  # duplicate handle active => 5 forexes
+  logic-active-forex-1:
+    image: logic-active
+    container_name: logic-active-forex-1
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=1
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  logic-active-forex-2:
+    image: logic-active
+    container_name: logic-active-forex-2
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=2
+    env_file:
+      - ./.env
+    networks:
+      - network
+  
+  logic-active-forex-3:
+    image: logic-active
+    container_name: logic-active-forex-3
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=3
+    env_file:
+      - ./.env
+    networks:
+      - network
+  
+  logic-active-forex-4:
+    image: logic-active
+    container_name: logic-active-forex-4
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=4
+    env_file:
+      - ./.env
+    networks:
+      - network
+  
+  logic-active-forex-5:
+    image: logic-active
+    container_name: logic-active-forex-5
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=5
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  # duplicate handle margin => 5 forexes
+  logic-margin-forex-1:
+    image: logic-margin
+    container_name: logic-margin-forex-1
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=1
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  logic-margin-forex-2:
+    image: logic-margin
+    container_name: logic-margin-forex-2
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=2
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  logic-margin-forex-3:
+    image: logic-margin
+    container_name: logic-margin-forex-3
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=3
+    env_file:
+      - ./.env
+    networks:
+      - network
+  
+  logic-margin-forex-4:
+    image: logic-margin
+    container_name: logic-margin-forex-4
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=4
+    env_file:
+      - ./.env
+    networks:
+      - network 
+      
+  logic-margin-forex-5:
+    image: logic-margin
+    container_name: logic-margin-forex-5
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=5
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  # duplicate handle pending => 5 forexes
+  logic-pending-forex-1:
+    image: logic-pending
+    container_name: logic-pending-forex-1
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=1
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+  logic-pending-forex-2:
+    image: logic-pending
+    container_name: logic-pending-forex-2
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=2
+    env_file:
+      - ./.env
+    networks:
+      - network
+  
+  logic-pending-forex-3:
+    image: logic-pending
+    container_name: logic-pending-forex-3
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=3
+    env_file:
+      - ./.env
+    networks:
+      - network
+  
+  logic-pending-forex-4:
+    image: logic-pending
+    container_name: logic-pending-forex-4
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=4
+    env_file:
+      - ./.env
+    networks:
+      - network
+  
+  logic-pending-forex-5:
+    image: logic-pending
+    container_name: logic-pending-forex-5
+    restart: always
+    environment:
+      - PRICE_TYPE=forex
+      - CHUNK_TIME_SCHEDULE_LIST=5
+      - CHUNK_PICE_TIME_SCHEDULE=5
+    env_file:
+      - ./.env
+    networks:
+      - network
+
+networks:
+  network:
+  
